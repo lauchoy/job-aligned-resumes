@@ -88,8 +88,17 @@ const roleTemplates = {
 
 // Function to generate resume from template
 function generateResumeFromTemplate(roleCode, template) {
-  // Use FSE resume as base
-  const baseResume = JSON.parse(readFileSync(join(projectRoot, 'data/resume/jimmy_fse_resume.json'), 'utf8'));
+  // Use FSE resume as base - construct filename using env vars
+  const username = process.env.USERNAME || 'username';
+  const baseResumeFile = join(projectRoot, `data/resume/${username}_fse_resume.json`);
+  
+  if (!existsSync(baseResumeFile)) {
+    console.error(`❌ Base resume file not found: ${baseResumeFile}`);
+    console.error('💡 Please create your FSE resume file first or set USERNAME environment variable');
+    return null;
+  }
+  
+  const baseResume = JSON.parse(readFileSync(baseResumeFile, 'utf8'));
   
   // Update basics
   baseResume.basics.label = template.label;
@@ -115,12 +124,15 @@ function generateResumeFromTemplate(roleCode, template) {
 
 // Generate missing resume files
 Object.entries(roleTemplates).forEach(([roleCode, template]) => {
-  const filePath = join(projectRoot, 'data/resume', `jimmy_${roleCode.toLowerCase()}_resume.json`);
+  const username = process.env.USERNAME || 'username';
+  const filePath = join(projectRoot, 'data/resume', `${username}_${roleCode.toLowerCase()}_resume.json`);
   
   if (!existsSync(filePath)) {
     const resume = generateResumeFromTemplate(roleCode, template);
-    writeFileSync(filePath, JSON.stringify(resume, null, 2), 'utf8');
-    console.log(`✅ Generated resume for ${roleCode}: ${filePath}`);
+    if (resume) {
+      writeFileSync(filePath, JSON.stringify(resume, null, 2), 'utf8');
+      console.log(`✅ Generated resume for ${roleCode}: ${filePath}`);
+    }
   } else {
     console.log(`⚠️  Resume already exists for ${roleCode}: ${filePath}`);
   }

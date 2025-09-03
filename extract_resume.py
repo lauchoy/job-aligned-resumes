@@ -18,7 +18,12 @@ def extract_text_from_pdf(pdf_path):
         return None
 
 if __name__ == "__main__":
-    pdf_path = "/Users/Apple/Documents/Resumes/Jimmy_Lau_Choy_Resumes_SWE.pdf"
+    if len(sys.argv) != 2:
+        print("Usage: python extract_resume.py <pdf_path>")
+        print("Example: python extract_resume.py /path/to/resume.pdf")
+        sys.exit(1)
+    
+    pdf_path = sys.argv[1]
     text = extract_text_from_pdf(pdf_path)
     if text:
         print(text)

@@ -137,7 +137,7 @@ if (options.version) {
 
 **Features:**
 - Individual version tracking per role
-- Consistent filename format: `JimmyLauChoy_[ROLE]_v[000].html`
+- Consistent filename format: `${FIRST_NAME}${LAST_NAME}_[ROLE]_v[000].html`
 - Comprehensive role definitions and mappings
 - Automatic version incrementing
 - Role-specific resume data
@@ -186,18 +186,18 @@ node scripts/generate-role-resume.js help  # Show available roles
 
 Files follow this pattern:
 ```
-JimmyLauChoy_[ROLE]_v[000].html
+${FIRST_NAME}${LAST_NAME}_[ROLE]_v[000].html
 ```
 
 Examples:
 ```
-JimmyLauChoy_FSE_v001.html
-JimmyLauChoy_PM_v003.html
-JimmyLauChoy_DPM_v001.html
+${FIRST_NAME}${LAST_NAME}_FSE_v001.html
+${FIRST_NAME}${LAST_NAME}_PM_v003.html
+${FIRST_NAME}${LAST_NAME}_DPM_v001.html
 ```
 
 Where:
-- `JimmyLauChoy`: Fixed name prefix
+- `${FIRST_NAME}${LAST_NAME}`: User's name from environment variables
 - `[ROLE]`: Role code (FSE, PM, DPM, etc.)
 - `v[000]`: Zero-padded version number
 - `.html`: File extension

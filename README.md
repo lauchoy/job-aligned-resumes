@@ -11,16 +11,16 @@ job-align-project/
 │   └── versions.json     # Version tracking for each role
 ├── data/
 │   └── resume/           # Role-specific resume data
-│       ├── jimmy_pm_resume.json      # Product Manager
-│       ├── jimmy_fse_resume.json     # Full Stack Engineer
-│       ├── jimmy_dpm_resume.json     # Data Product Manager
-│       ├── jimmy_tpm_resume.json     # Technical Product Manager
-│       ├── jimmy_proj_resume.json    # Project Manager
-│       ├── jimmy_sys_resume.json     # Systems Engineer
-│       ├── jimmy_plat_resume.json    # Platform Engineer
-│       ├── jimmy_sale_resume.json    # Sales Engineer
-│       ├── jimmy_cs_resume.json      # Customer Success Manager
-│       └── jimmy_da_resume.json      # Data Analyst
+│       ├── [username]_pm_resume.json      # Product Manager
+│       ├── [username]_fse_resume.json     # Full Stack Engineer
+│       ├── [username]_dpm_resume.json     # Data Product Manager
+│       ├── [username]_tpm_resume.json     # Technical Product Manager
+│       ├── [username]_proj_resume.json    # Project Manager
+│       ├── [username]_sys_resume.json     # Systems Engineer
+│       ├── [username]_plat_resume.json    # Platform Engineer
+│       ├── [username]_sale_resume.json    # Sales Engineer
+│       ├── [username]_cs_resume.json      # Customer Success Manager
+│       └── [username]_da_resume.json      # Data Analyst
 ├── scripts/
 │   ├── generate-role-resume.js       # Main generator script
 │   └── generate-missing-resumes.js   # Utility to create missing variants
@@ -34,7 +34,7 @@ job-align-project/
 This project implements a sophisticated role-based versioning system that:
 
 - **Tracks versions per role**: Each role (PM, FSE, DPM, etc.) has its own version counter
-- **Generates consistent filenames**: Format is `JimmyLauChoy_[ROLE]_v[000].html`
+- **Generates consistent filenames**: Format is `[FIRST_NAME][LAST_NAME]_[ROLE]_v[000].html`
 - **Embeds metadata**: HTML includes role, version, and generation timestamp comments
 - **Maintains history**: Tracks total generations and last modified dates
 
@@ -74,6 +74,72 @@ This project implements a sophisticated role-based versioning system that:
 ### Direct Script Usage
 - `node scripts/generate-role-resume.js <ROLE_CODE>` - Generate specific role
 - `node scripts/generate-role-resume.js help` - Show available roles
+
+## Setup
+
+### Environment Configuration
+
+**Important**: Before using this project, you must configure your personal information using environment variables.
+
+1. **Copy the example environment file**:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Edit the .env file** with your personal information:
+   ```bash
+   # Your personal information for filename generation
+   FIRST_NAME=YourFirstName
+   LAST_NAME=YourLastName
+   USERNAME=yourusername
+   ```
+
+3. **Create your resume files** in the `data/resume/` directory following the pattern:
+   ```
+   data/resume/[USERNAME]_[role]_resume.json
+   ```
+   
+   For example, if `USERNAME=johndoe`:
+   - `data/resume/johndoe_pm_resume.json`
+   - `data/resume/johndoe_fse_resume.json`
+   - `data/resume/johndoe_dpm_resume.json`
+
+4. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+### Resume File Format
+
+Each resume file should follow the [JSON Resume Schema](https://jsonresume.org/schema/). Here's a basic template:
+
+```json
+{
+  "basics": {
+    "name": "Your Name",
+    "label": "Role Title",
+    "email": "your.email@example.com",
+    "summary": "Brief professional summary tailored for this role"
+  },
+  "work": [
+    {
+      "company": "Company Name",
+      "position": "Your Position",
+      "startDate": "2020-01-01",
+      "highlights": [
+        "Achievement 1",
+        "Achievement 2"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Technical Skills",
+      "keywords": ["Skill 1", "Skill 2"]
+    }
+  ]
+}
+```
 
 ## Usage
 
@@ -119,12 +185,12 @@ This project implements a sophisticated role-based versioning system that:
 - **Metadata tracking**: Timestamps, generation counts, and history
 
 ### Filename Format
-Generated files follow the pattern: `JimmyLauChoy_[ROLE]_v[000].html`
+Generated files follow the pattern: `[FIRST_NAME][LAST_NAME]_[ROLE]_v[000].html`
 
 Examples:
-- `JimmyLauChoy_FSE_v001.html`
-- `JimmyLauChoy_PM_v003.html`
-- `JimmyLauChoy_DPM_v001.html`
+- `[FIRST_NAME][LAST_NAME]_FSE_v001.html`
+- `[FIRST_NAME][LAST_NAME]_PM_v003.html`
+- `[FIRST_NAME][LAST_NAME]_DPM_v001.html`
 
 ### HTML Metadata
 Each generated resume includes HTML comments with:
@@ -160,10 +226,45 @@ Tracks version history for each role including:
 ## Development
 
 ### Adding New Roles
-1. Add role definition to `config/roles.json`
-2. Create corresponding resume JSON in `data/resume/`
-3. Add npm script to `package.json`
-4. Version tracking is automatic
+1. **Update `config/roles.json`**:
+   ```json
+   {
+     "YOUR_CODE": {
+       "code": "YOUR_CODE",
+       "name": "Your Role Name",
+       "sourceFile": "data/resume/[username]_your_code_resume.json",
+       "description": "Description of this role"
+     }
+   }
+   ```
+
+2. **Create corresponding resume JSON** in `data/resume/[username]_your_code_resume.json`
+   - Follow the [JSON Resume Schema](https://jsonresume.org/schema/)
+   - Base it on an existing role file for consistency
+   - Customize content, skills, and experience for the new role
+
+3. **Add npm script** to `package.json`:
+   ```json
+   {
+     "scripts": {
+       "build:your_code": "node scripts/generate-role-resume.js YOUR_CODE"
+     }
+   }
+   ```
+
+4. **Version tracking is automatic** - no additional configuration needed
+
+### Removing Roles
+1. **Remove from `config/roles.json`**
+2. **Delete the resume JSON file** from `data/resume/`
+3. **Remove npm script** from `package.json`
+4. **Optionally clean up `config/versions.json`** (or leave for historical tracking)
+
+### Customizing Role Templates
+You can customize the filename format and output structure by modifying:
+- **Filename format**: Update the `generateFilename()` function in `scripts/generate-role-resume.js`
+- **Version format**: Modify the `meta.format` field in `config/versions.json`
+- **Source file naming**: Update `sourceFile` paths in `config/roles.json`
 
 ### Customizing Themes
 1. Install new theme: `npm install jsonresume-theme-[name]`

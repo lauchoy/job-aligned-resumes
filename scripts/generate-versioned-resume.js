@@ -46,7 +46,7 @@ async function generateVersionedResume(resumeJsonPath, themeName = 'jsonresume-t
 // CLI usage
 if (process.argv.length < 3) {
   console.log('Usage: node scripts/generate-versioned-resume.js <resume.json> [theme] [outputDir]');
-  console.log('Example: node scripts/generate-versioned-resume.js data/resume/jimmy_swe_resume.json');
+  console.log('Example: node scripts/generate-versioned-resume.js data/resume/[username]_fse_resume.json');
   process.exit(1);
 }
 

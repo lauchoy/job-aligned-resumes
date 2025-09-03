@@ -38,7 +38,7 @@ The Job Align Project implements a comprehensive role-based versioning system th
     "PM": {
       "code": "PM",
       "name": "Product Manager",
-      "sourceFile": "data/resume/jimmy_pm_resume.json",
+      "sourceFile": "data/resume/${USERNAME}_pm_resume.json",
       "description": "Strategic product management focused on user experience..."
     }
   },
@@ -60,7 +60,7 @@ The Job Align Project implements a comprehensive role-based versioning system th
   },
   "meta": {
     "lastUpdated": "2025-08-26T02:41:39.918Z",
-    "format": "JimmyLauChoy_[ROLE]_v[000]"
+    "format": "${FIRST_NAME}${LAST_NAME}_[ROLE]_v[000]"
   }
 }
 ```
@@ -103,14 +103,14 @@ npm run build:all-roles
 - Previous versions are never overwritten
 
 ### File Naming Convention
-- Format: `JimmyLauChoy_[ROLE]_v[000].html`
+- Format: `${FIRST_NAME}${LAST_NAME}_[ROLE]_v[000].html`
 - Zero-padded version numbers (001, 002, 003...)
 - Consistent naming across all roles
 
 Examples:
-- `JimmyLauChoy_FSE_v001.html` (First Full Stack Engineer version)
-- `JimmyLauChoy_PM_v005.html` (Fifth Product Manager version)
-- `JimmyLauChoy_DPM_v001.html` (First Data Product Manager version)
+- `${FIRST_NAME}${LAST_NAME}_FSE_v001.html` (First Full Stack Engineer version)
+- `${FIRST_NAME}${LAST_NAME}_PM_v005.html` (Fifth Product Manager version)
+- `${FIRST_NAME}${LAST_NAME}_DPM_v001.html` (First Data Product Manager version)
 
 ### Version History
 The system maintains comprehensive history:
@@ -175,14 +175,14 @@ Generated HTML includes versioning comments in the head section:
    "NEWROLE": {
      "code": "NEWROLE",
      "name": "New Role Name",
-     "sourceFile": "data/resume/jimmy_newrole_resume.json",
+     "sourceFile": "data/resume/${USERNAME}_newrole_resume.json",
      "description": "Description of the new role..."
    }
    ```
 
 2. **Create resume JSON file**:
    - Follow JSON Resume schema
-   - Place in `data/resume/jimmy_newrole_resume.json`
+   - Place in `data/resume/${USERNAME}_newrole_resume.json`
    - Tailor content for the specific role
 
 3. **Add npm script**:

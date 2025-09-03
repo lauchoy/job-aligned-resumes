@@ -3,14 +3,40 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '..');
 
+// Environment variable validation
+function validateEnvironment() {
+  const required = ['FIRST_NAME', 'LAST_NAME', 'USERNAME'];
+  const missing = required.filter(env => !process.env[env]);
+  
+  if (missing.length > 0) {
+    console.error('❌ Missing required environment variables:', missing.join(', '));
+    console.error('💡 Please set these in your .env file or environment');
+    console.error('📄 See .env.example for reference');
+    process.exit(1);
+  }
+}
+
+// Function to substitute environment variables in strings
+function substituteEnvVars(str) {
+  return str.replace(/\$\{([^}]+)\}/g, (match, envVar) => {
+    return process.env[envVar] || match;
+  });
+}
+
 // Load configuration files
-const rolesConfig = JSON.parse(readFileSync(join(projectRoot, 'config/roles.json'), 'utf8'));
+const rolesConfigRaw = readFileSync(join(projectRoot, 'config/roles.json'), 'utf8');
+const rolesConfig = JSON.parse(substituteEnvVars(rolesConfigRaw));
 const versionsFile = join(projectRoot, 'config/versions.json');
-let versionsConfig = JSON.parse(readFileSync(versionsFile, 'utf8'));
+let versionsConfigRaw = readFileSync(versionsFile, 'utf8');
+let versionsConfig = JSON.parse(substituteEnvVars(versionsConfigRaw));
 
 // Function to increment version for a role
 function incrementVersion(roleCode) {
@@ -36,7 +62,9 @@ function incrementVersion(roleCode) {
 // Function to generate filename
 function generateFilename(roleCode, version, extension = 'html') {
   const paddedVersion = version.toString().padStart(3, '0');
-  return `JimmyLauChoy_${roleCode}_v${paddedVersion}.${extension}`;
+  const firstName = process.env.FIRST_NAME || 'FirstName';
+  const lastName = process.env.LAST_NAME || 'LastName';
+  return `${firstName}${lastName}_${roleCode}_v${paddedVersion}.${extension}`;
 }
 
 // Function to generate versioned resume
@@ -127,6 +155,9 @@ function showAvailableRoles() {
   console.log('📝 Example: node scripts/generate-role-resume.js FSE');
   console.log('📝 Example: node scripts/generate-role-resume.js PM jsonresume-theme-even');
 }
+
+// Validate environment before proceeding
+validateEnvironment();
 
 // CLI usage
 if (process.argv.length < 3) {

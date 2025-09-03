@@ -53,6 +53,6 @@
   },
   "meta": {
     "lastUpdated": "2025-09-02T23:16:32.250Z",
-    "format": "JimmyLauChoy_[ROLE]_v[000]"
+    "format": "${FIRST_NAME}${LAST_NAME}_[ROLE]_v[000]"
   }
 }
