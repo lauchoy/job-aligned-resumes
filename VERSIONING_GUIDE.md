@@ -253,7 +253,7 @@ cat config/versions.json | jq '.versions'
 cat config/roles.json | jq '.roles'
 
 # List generated files
-ls -la outputs/JimmyLauChoy_*
+ls -la outputs/username_*
 ```
 
 ## Best Practices
