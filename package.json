@@ -1,0 +1,41 @@
+{
+  "name": "job-align-project",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:html": "npx resumed render data/resume/resume.json -o outputs/resume.html",
+    "build:pdf": "npx resumed export data/resume/resume.json -o outputs/resume.pdf",
+    "validate": "npx resumed validate data/resume/resume.json",
+    "serve": "npx resumed serve data/resume/resume.json",
+    "roles:list": "node scripts/generate-role-resume.js list",
+    "build:pm": "node scripts/generate-role-resume.js PM",
+    "dev:pm": "node scripts/dev-server.js PM",
+    "build:dpm": "node scripts/generate-role-resume.js DPM",
+    "build:tpm": "node scripts/generate-role-resume.js TPM",
+    "build:proj": "node scripts/generate-role-resume.js PROJ",
+    "build:fse": "node scripts/generate-role-resume.js FSE",
+    "build:sys": "node scripts/generate-role-resume.js SYS",
+    "build:plat": "node scripts/generate-role-resume.js PLAT",
+    "build:sale": "node scripts/generate-role-resume.js SALE",
+    "build:cs": "node scripts/generate-role-resume.js CS",
+    "build:da": "node scripts/generate-role-resume.js DA",
+    "build:all-roles": "npm run build:pm && npm run build:dpm && npm run build:tpm && npm run build:proj && npm run build:fse && npm run build:sys && npm run build:plat && npm run build:sale && npm run build:cs && npm run build:da"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@warleon/jsonresume-theme-compact": "^0.0.12",
+    "jsonresume-theme-cora": "^0.1.1",
+    "jsonresume-theme-even": "^0.23.0",
+    "jsonresume-theme-flat": "^0.3.7",
+    "jsonresume-theme-react-tailwind": "^1.2.0",
+    "jsonresume-theme-tech": "^1.3.4",
+    "puppeteer": "^24.16.1",
+    "resumed": "^6.0.0",
+    "ws": "^8.18.3"
+  }
+}

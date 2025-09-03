@@ -1,0 +1,28 @@
+{
+  "careerGoals": {
+    "shortTerm": "Secure a platform engineer role or junior product manager at a growing tech company",
+    "longTerm": "Lead a group of product leaders to build products customers love"
+  },
+  "preferences": {
+    "workLocation": ["Remote", "Los Angeles", "New York"],
+    "companySize": ["Startup", "Mid-size"],
+    "industries": ["Technology", "FinTech", "e-commerce", "HealthTech"],
+    "salaryRange": {
+      "min": 120000,
+      "max": 200000,
+      "currency": "USD"
+    }
+  },
+  "strengths": [
+    "Full-stack development",
+    "Problem-solving",
+    "Team collaboration",
+    "Technical leadership"
+  ],
+  "improvementAreas": [
+    "Machine learning",
+    "DevOps practices",
+    "System design"
+  ],
+  "availabilityDate": "2025-09-01"
+}

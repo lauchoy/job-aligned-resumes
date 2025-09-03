@@ -1,0 +1,66 @@
+{
+  "roles": {
+    "PM": {
+      "code": "PM",
+      "name": "Product Manager",
+      "sourceFile": "data/resume/jimmy_pm_resume.json",
+      "description": "Strategic product management focused on user experience and market positioning"
+    },
+    "DPM": {
+      "code": "DPM", 
+      "name": "Data Product Manager",
+      "sourceFile": "data/resume/jimmy_dpm_resume.json",
+      "description": "Data-driven product management with analytics and ML expertise"
+    },
+    "TPM": {
+      "code": "TPM",
+      "name": "Technical Product Manager", 
+      "sourceFile": "data/resume/jimmy_tpm_resume.json",
+      "description": "Technical product management bridging engineering and business strategy"
+    },
+    "PROJ": {
+      "code": "PROJ",
+      "name": "Project Manager",
+      "sourceFile": "data/resume/jimmy_proj_resume.json", 
+      "description": "Project management focused on delivery excellence and stakeholder coordination"
+    },
+    "FSE": {
+      "code": "FSE",
+      "name": "Full Stack Engineer",
+      "sourceFile": "data/resume/jimmy_fse_resume.json",
+      "description": "Full-stack development with modern web technologies and scalable architecture"
+    },
+    "SYS": {
+      "code": "SYS",
+      "name": "Systems Engineer",
+      "sourceFile": "data/resume/jimmy_sys_resume.json",
+      "description": "Systems engineering focused on infrastructure and platform reliability"
+    },
+    "PLAT": {
+      "code": "PLAT", 
+      "name": "Platform Engineer",
+      "sourceFile": "data/resume/jimmy_plat_resume.json",
+      "description": "Platform engineering specializing in developer experience and infrastructure"
+    },
+    "SALE": {
+      "code": "SALE",
+      "name": "Sales Engineer", 
+      "sourceFile": "data/resume/jimmy_sale_resume.json",
+      "description": "Technical sales combining engineering expertise with customer relationship management"
+    },
+    "CS": {
+      "code": "CS",
+      "name": "Customer Success Manager",
+      "sourceFile": "data/resume/jimmy_cs_resume.json", 
+      "description": "Customer success focused on retention and growth through technical solutions"
+    },
+    "DA": {
+      "code": "DA",
+      "name": "Data Analyst",
+      "sourceFile": "data/resume/jimmy_da_resume.json",
+      "description": "Data analysis with business intelligence and reporting expertise"
+    }
+  },
+  "defaultTheme": "jsonresume-theme-react-tailwind",
+  "outputDir": "outputs"
+}

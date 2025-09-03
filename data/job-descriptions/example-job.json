@@ -1,0 +1,24 @@
+{
+  "company": "Example Company",
+  "position": "Software Engineer",
+  "location": "San Francisco, CA",
+  "jobType": "Full-time",
+  "description": "We are looking for a talented software engineer...",
+  "requirements": [
+    "3+ years of experience in JavaScript",
+    "Experience with React or Vue.js",
+    "Strong problem-solving skills"
+  ],
+  "desiredSkills": [
+    "Node.js",
+    "Docker",
+    "AWS experience"
+  ],
+  "benefits": [
+    "Health insurance",
+    "401k matching",
+    "Flexible work hours"
+  ],
+  "applicationDeadline": "2024-01-31",
+  "tags": ["javascript", "react", "frontend"]
+}
